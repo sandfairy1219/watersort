@@ -57,10 +57,12 @@ body {
 .bottle {
   width: 50px;
   height: 200px;
-  border: 2px solid #000;
+  border: 1px solid #000;
+  margin: 10px;
+  display: inline-block;
+  position: relative;
   border-radius: 10px;
   overflow: hidden;
-  display: flex;
   flex-direction: column-reverse;
   cursor: pointer;
   transition: transform 0.3s;
@@ -68,6 +70,8 @@ body {
 
 .water {
   width: 100%;
+  position: absolute;
+  bottom: 0;
   transition: height 0.3s;
 }
 
@@ -105,5 +109,6 @@ body {
 }
 
 .difficulty-button.active {
-  background-color: rgb(87, 249, 255);
+  background-color: #4CAF50; /* Change this to your desired color */
+  color: white; /* Optional: Change text color */
 }
