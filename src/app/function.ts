@@ -1,24 +1,24 @@
-type Difficulty = {
+type Difficulty = {     // 난이도 타입 지정
     colors: string[];
     bottles: number;
     emptyBottles: number;
   };
   
-  const difficulties: Record<string, Difficulty> = {
+  const difficulties: Record<string, Difficulty> = {   // 난이도 설정
     easy: { colors: ['red', 'blue', 'green', 'yellow'], bottles: 4, emptyBottles: 1 },
     medium: { colors: ['red', 'blue', 'green', 'yellow', 'purple', 'orange'], bottles: 6, emptyBottles: 2 },
     hard: { colors: ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'lightblue', 'pink'], bottles: 8, emptyBottles: 2 },
   };
   
-  let selectedDifficulty: string | null = null;
-  let selectedBottle: HTMLDivElement | null = null;
-  let moveHistory: {
+  let selectedDifficulty: string | null = null; // 선택된 난이도
+  let selectedBottle: HTMLDivElement | null = null; // 선택된 병
+  let moveHistory: { // 이동 기록
     fromBottle: HTMLDivElement;
     toBottle: HTMLDivElement;
     colors: HTMLDivElement[];
   }[] = [];
   
-  document.querySelectorAll<HTMLButtonElement>('.difficulty-button').forEach(button => {
+  document.querySelectorAll<HTMLButtonElement>('.difficulty-button').forEach(button => { // 난이도 버튼 토글속성 추가, 난이도 설정
     button.addEventListener('click', () => {
       document.querySelectorAll<HTMLButtonElement>('.difficulty-button').forEach(btn => btn.classList.remove('toggled'));
       button.classList.toggle('toggled');
@@ -27,7 +27,7 @@ type Difficulty = {
     });
   });
   
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => { // 게임 시작, 이동 취소 버튼 이벤트 추가
     const startButton = document.getElementById('start') as HTMLButtonElement;
     const undoButton = document.getElementById('undo') as HTMLButtonElement;
   
@@ -42,40 +42,39 @@ type Difficulty = {
     undoButton.addEventListener('click', undoMove);
   });
   
-  function startGame(difficulty: Difficulty): void {
-    const gameBoard = document.getElementById('game-board') as HTMLDivElement;
-    gameBoard.innerHTML = '';
-    const colors = [...difficulty.colors];
-    const bottles: HTMLDivElement[] = [];
+  function startGame(difficulty: Difficulty): void { //
+    const gameBoard = document.getElementById('game-board') as HTMLDivElement; // 게임 보드 불러오기
+    gameBoard.innerHTML = '';  // 게임 보드 초기화
+    const colors = [...difficulty.colors]; // 난이도에 따른 색상 설정
+    const bottles: HTMLDivElement[] = []; // 병 설정
     gameBoard.style.display = 'flex';
   
     const colorPool: string[] = [];
-    colors.forEach(color => {
+    colors.forEach(color => {   // 색상 설정
       for (let i = 0; i < 4; i++) {
         colorPool.push(color);
       }
     });
   
     for (let i = colorPool.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
+      const j = Math.floor(Math.random() * (i + 1));    // 색상 섞기
       [colorPool[i], colorPool[j]] = [colorPool[j], colorPool[i]];
     }
   
     for (let i = 0; i < difficulty.bottles; i++) {
-      const bottleColors = colorPool.splice(0, 4);
+      const bottleColors = colorPool.splice(0, 4); // 병 색상 설정
       bottles.push(createBottle(bottleColors));
     }
   
     for (let i = 0; i < difficulty.emptyBottles; i++) {
-      bottles.push(createBottle([]));
+      bottles.push(createBottle([]));   // 빈 병 설정
     }
   
     bottles.forEach(bottle => {
-      gameBoard.appendChild(bottle);
+      gameBoard.appendChild(bottle);    // 병 추가
     });
   
     moveHistory = [];
-    checkGameClear();
   }
   
   function createBottle(colors: string[]): HTMLDivElement {
@@ -159,7 +158,5 @@ type Difficulty = {
     });
   }
   
-  function checkGameClear(): void {
-    // 게임 종료 조건을 체크하는 로직 추가 (현재 구현 필요)
-  }
+ 
   
