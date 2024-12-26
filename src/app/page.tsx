@@ -46,9 +46,9 @@ export default function Home() {
       if (selectedDifficulty === 'easy') {
         baseScore = 60;
       } else if (selectedDifficulty === 'medium') {
-        baseScore = 70;
+        baseScore = 75;
       } else if (selectedDifficulty === 'hard') {
-        baseScore = 80;
+        baseScore = 90;
       }
       const finalScore = baseScore - time;
       alert(`게임 종료. 점수는 ${finalScore}입니다.`);
