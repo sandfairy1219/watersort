@@ -44,11 +44,11 @@ export default function Home() {
     if (isGameStarted && isGameComplete(bottles)) {
       let baseScore = 0;
       if (selectedDifficulty === 'easy') {
-        baseScore = 40;
-      } else if (selectedDifficulty === 'medium') {
-        baseScore = 50;
-      } else if (selectedDifficulty === 'hard') {
         baseScore = 60;
+      } else if (selectedDifficulty === 'medium') {
+        baseScore = 100;
+      } else if (selectedDifficulty === 'hard') {
+        baseScore = 150;
       }
       const finalScore = baseScore - time;
       alert(`게임 종료. 점수는 ${finalScore}입니다.`);
