@@ -27,7 +27,7 @@
   width: 50px;
   height: 200px;
   margin: 5px;
-  border: 1px solid black;
+  border: 1px solid rgb(255, 255, 255);
   display: inline-block;
   vertical-align: bottom;
   position: relative;
@@ -74,12 +74,12 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 300px;
+  width: 360px;
   text-align: center;
   
 }
 #start{
-border: 5px solid black;
+border: 5px solid rgb(255, 255, 255);
 border-radius: 10px;
   margin: 5px;
   padding: 10px;
@@ -94,15 +94,20 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
+  background: rgb(44, 44, 44);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 button {
   font-size: large;
   margin: 5px;
+  color: white;
 }
 
 #undo{
-  border: 5px solid black;
+  border: 5px solid rgb(255, 255, 255);
 border-radius: 10px;
   margin: 5px;
   padding: 10px;
@@ -123,6 +128,10 @@ border-radius: 10px;
   background-color: rgb(132, 56, 56);
 }
 
+#extreme.toggled {
+  background-color: rgb(91, 91, 91);
+}
+
 #easy{
   color: white;
 }
@@ -138,6 +147,7 @@ border-radius: 10px;
 #title{
   font-size: 50px;
   height: 20vh;
+  color: white;
 }
 
 #bod{

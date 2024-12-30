@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from 'react';
 
-type Difficulty = 'easy' | 'medium' | 'hard';
+type Difficulty = 'easy' | 'medium' | 'hard' | 'extreme';
 
 interface DifficultyConfig {
   colors: string[];
@@ -12,7 +12,8 @@ interface DifficultyConfig {
 const difficulties: Record<Difficulty, DifficultyConfig> = {
   easy: { colors: ['red', 'blue', 'green', 'yellow'], bottles: 4, emptyBottles: 2 },
   medium: { colors: ['red', 'blue', 'green', 'yellow', 'purple', 'orange'], bottles: 6, emptyBottles: 2 },
-  hard: { colors: ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'lightblue', 'pink'], bottles: 8, emptyBottles: 2 }
+  hard: { colors: ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'lightblue', 'pink'], bottles: 8, emptyBottles: 2 },
+  extreme: { colors: ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'lightblue', 'pink', 'lightgreen', 'gray'], bottles: 10, emptyBottles: 2 }
 };
 
 interface Move {
@@ -49,6 +50,8 @@ export default function Home() {
         baseScore = 75;
       } else if (selectedDifficulty === 'hard') {
         baseScore = 90;
+      } else if (selectedDifficulty === 'extreme') {
+        baseScore = 180;
       }
       const finalScore = baseScore - time;
       alert(`게임 종료. 점수는 ${finalScore}입니다.`);
@@ -196,6 +199,7 @@ export default function Home() {
         <button className="difficulty-button btn btn-success" id="easy">Easy</button>
         <button className="difficulty-button btn btn-warning" id="medium">Medium</button>
         <button className="difficulty-button btn btn-danger" id='hard'>Hard</button>
+        <button className="difficulty-button btn btn-dark" id='extreme'>Extreme</button>
         <button id="start" onClick={() => {
           if (!selectedDifficulty) {
             alert('난이도를 선택해주세요.');
